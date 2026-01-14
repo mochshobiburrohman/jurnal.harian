@@ -1,7 +1,8 @@
 <?php
 session_start();
+// Cek sesi login guru
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
-    header("Location: index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -10,15 +11,27 @@ include '../../../koneksi.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_guru = $_SESSION['user_id'];
     $tanggal = $_POST['tanggal'];
-    $mapel   = $_POST['mata_pelajaran']; // Data baru
-    $kelas   = $_POST['kelas'];          // Data baru
-    $isi     = $_POST['isi'];
+    $jam_ke  = $_POST['jam_ke'];
+    $mapel   = $_POST['mata_pelajaran'];
+    $kelas   = $_POST['kelas'];
+    
+    // PERBAIKAN: Ambil data dari form name='materi', tapi simpan ke variabel $isi
+    $isi     = $_POST['materi']; 
+    
+    // Data Absensi
+    $hadir   = $_POST['hadir'];
+    $sakit   = $_POST['sakit'];
+    $izin    = $_POST['izin'];
+    $alpa    = $_POST['alpa'];
+    
+    $status  = 'pending';
 
-    // Query update dengan kolom baru
-    $sql = "INSERT INTO jurnal_harian (id_guru, tanggal, mata_pelajaran, kelas, isi_jurnal)
-            VALUES ('$id_guru', '$tanggal', '$mapel', '$kelas', '$isi')";
+    // PERBAIKAN QUERY SQL:
+    // Kolom 'materi' diganti menjadi 'isi_jurnal' sesuai struktur database asli
+    $sql = "INSERT INTO jurnal_harian (id_guru, tanggal, jam_ke, mata_pelajaran, kelas, isi_jurnal, hadir, sakit, izin, alpa, status)
+            VALUES ('$id_guru', '$tanggal', '$jam_ke', '$mapel', '$kelas', '$isi', '$hadir', '$sakit', '$izin', '$alpa', '$status')";
  
-    if ($conn->query($sql)) {
+    if ($conn->query($sql) === TRUE) {
         echo "<script>alert('Berhasil Menambahkan Jurnal');window.location='index.php';</script>";
         exit;
     } else {
@@ -34,68 +47,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Tambah Jurnal</title>
     <link href="../../../src/output.css" rel="stylesheet">
 </head>
-<body>
-<div class="antialiased bg-gray-50 dark:bg-gray-900">
+<body class="bg-gray-50 dark:bg-gray-900">
+
 <?php include ("../../partials/navbar.php")?>
 <?php include ("../../partials/sidebar_guru.php")?>
+
 <main class="mx-auto p-4 md:ml-64 h-auto pt-20">
-    <div class="max-w-xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+    <div class="max-w-2xl mx-auto mt-5 bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6">
             Tambah Jurnal Harian
         </h2>
 
         <form method="POST" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                    Tanggal
-                </label>
-                <input type="date" name="tanggal" required
-                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
-                              rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                              dark:bg-gray-700 dark:text-white">
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Tanggal</label>
+                    <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Jam Ke-</label>
+                    <input type="text" name="jam_ke" placeholder="Contoh: 1-2" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kelas</label>
+                    <input type="text" name="kelas" placeholder="Contoh: X IPA 1" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Mata Pelajaran</label>
+                    <input type="text" name="mata_pelajaran" placeholder="Contoh: Matematika" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+                </div>
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                    Mata Pelajaran
-                </label>
-                <input type="text" name="mata_pelajaran" required placeholder="Contoh: Matematika"
-                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
-                              rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                              dark:bg-gray-700 dark:text-white">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Materi Pembelajaran</label>
+                <textarea name="materi" rows="3" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white"></textarea>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                    Kelas
-                </label>
-                <input type="text" name="kelas" required placeholder="Contoh: X IPA 1"
-                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
-                              rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                              dark:bg-gray-700 dark:text-white">
-            </div>
-
-            <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                    Isi Jurnal / Materi
-                </label>
-                <textarea name="isi" rows="5" required
-                          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
-                                 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                                 dark:bg-gray-700 dark:text-white"></textarea>
+            <div class="p-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                <h3 class="text-sm font-medium text-gray-900 dark:text-white mb-3">Data Absensi Siswa</h3>
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300">Hadir</label>
+                        <input type="number" name="hadir" value="0" min="0" required class="w-full px-2 py-1 border rounded text-sm dark:bg-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300">Sakit</label>
+                        <input type="number" name="sakit" value="0" min="0" required class="w-full px-2 py-1 border rounded text-sm dark:bg-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300">Izin</label>
+                        <input type="number" name="izin" value="0" min="0" required class="w-full px-2 py-1 border rounded text-sm dark:bg-gray-600 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-700 dark:text-gray-300">Alpa</label>
+                        <input type="number" name="alpa" value="0" min="0" required class="w-full px-2 py-1 border rounded text-sm dark:bg-gray-600 dark:text-white">
+                    </div>
+                </div>
             </div>
 
             <div class="pt-2">
-                <button type="submit"
-                        class="px-5 py-2 bg-blue-600 text-white text-sm font-medium
-                               rounded-md hover:bg-blue-700 transition">
-                    Simpan
+                <button type="submit" class="w-full px-5 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition">
+                    Simpan Jurnal
                 </button>
             </div>
         </form>
     </div>
 </main>
-</div>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
 </html>

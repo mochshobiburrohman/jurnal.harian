@@ -25,7 +25,7 @@ $nip_guru = $guru_info ? $guru_info['nip'] : '-';
 $filter_tanggal = $bulan; 
 
 // Query Data Jurnal berdasarkan Guru dan Bulan
-$sql = "SELECT j.tanggal, j.isi_jurnal, j.status, j.mata_pelajaran, j.kelas
+$sql = "SELECT j.tanggal, j.isi_jurnal, j.status, j.mata_pelajaran, j.kelas, j.hadir
         FROM jurnal_harian j
         WHERE j.id_guru = '$id_guru' 
         AND j.tanggal LIKE '$filter_tanggal%'
@@ -86,7 +86,7 @@ $nama_bulan = date("F Y", strtotime($bulan));
                 <th width="15%">Mata Pelajaran</th>
                 <th width="10%">Kelas</th>
                 <th>Isi Jurnal / Materi</th>
-                <th width="10%">Status</th>
+                <th class="border border-gray-400 px-2 py-1">Hadir</th>
             </tr>
         </thead>
         <tbody>
@@ -98,8 +98,9 @@ $nama_bulan = date("F Y", strtotime($bulan));
                     <td style="text-align: center;"><?= htmlspecialchars($row['mata_pelajaran'] ?? '-'); ?></td>
                     <td style="text-align: center;"><?= htmlspecialchars($row['kelas'] ?? '-'); ?></td>
                     <td><?= nl2br(htmlspecialchars($row['isi_jurnal'])); ?></td>
-                    <td style="text-align: center;">
-                        <span class="<?= 'status-' . $row['status']; ?>">
+                    <td class="border border-gray-400 px-2 py-1 text-center">
+                        <?= $row['hadir'] ?> Siswa
+                        </td>
                             <?= ucfirst($row['status']); ?>
                         </span>
                     </td>
