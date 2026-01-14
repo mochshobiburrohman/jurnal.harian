@@ -78,11 +78,14 @@ $q_recent = $conn->query("SELECT * FROM jurnal_harian WHERE id_guru = '$id_guru'
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="bg-white shadow rounded-lg p-4 dark:bg-gray-800">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Status Jurnal Anda</h3>
-                <canvas id="guruChart"></canvas>
-            </div>
+        <div class="bg-white shadow rounded-lg p-4 dark:bg-gray-800">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Status Jurnal Anda</h3>
+    
+    <div style="height: 300px; position: relative; width: 100%;">
+        <canvas id="guruChart"></canvas>
+    </div>
+</div>
+</div>
 
             <div class="lg:col-span-2 bg-white shadow rounded-lg p-4 dark:bg-gray-800">
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">5 Jurnal Terakhir</h3>
@@ -118,17 +121,28 @@ $q_recent = $conn->query("SELECT * FROM jurnal_harian WHERE id_guru = '$id_guru'
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
     <script>
-        const ctx = document.getElementById('guruChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Pending', 'Verified', 'Revisi'],
-                datasets: [{
-                    data: [<?= $total_pending ?>, <?= $total_verified ?>, <?= $total_rejected ?>],
-                    backgroundColor: ['#FCD34D', '#34D399', '#F87171']
-                }]
+    const ctx = document.getElementById('guruChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Pending', 'Verified', 'Revisi'],
+            datasets: [{
+                data: [<?= $total_pending ?>, <?= $total_verified ?>, <?= $total_rejected ?>],
+                backgroundColor: ['#FCD34D', '#34D399', '#F87171']
+            }]
+        },
+        options: {
+            responsive: true,           // <--- PASTIKAN ADA KOMA DI SINI
+            maintainAspectRatio: false, // Opsi tambahan
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
             }
-        });
+        }
+    });
+</script>
+</script>
     </script>
 </body>
 </html>

@@ -121,10 +121,12 @@ if (!$recent_journals) {
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
             
-            <div class="bg-white shadow rounded-lg p-4 dark:bg-gray-800">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Statistik Status Jurnal</h3>
-                <canvas id="jurnalChart"></canvas>
-            </div>
+        <div class="bg-white shadow rounded-lg p-4 dark:bg-gray-800">
+    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Statistik Status Jurnal</h3>
+    <div class="h-64 relative flex justify-center">
+        <canvas id="jurnalChart"></canvas>
+    </div>
+</div>
 
             <div class="lg:col-span-2 bg-white shadow rounded-lg p-4 dark:bg-gray-800">
                 <div class="flex justify-between items-center mb-4">
@@ -203,6 +205,7 @@ if (!$recent_journals) {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'bottom',
