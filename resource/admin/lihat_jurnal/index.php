@@ -99,16 +99,16 @@ if ($result->num_rows > 0) {
                             </div>
                             
                             <span class="px-2.5 py-1 rounded text-xs font-bold
-                                <?= $row['status'] == 'verified' ? 'font-bold text-gray-900 dark:text-white text-base leading-tight' : 
-                                   ($row['status'] == 'rejected' ? 'font-bold text-gray-900 dark:text-white text-base leading-tight' : '') ?>">
-                                <?= ucfirst($row['status']) ?>
-                            </span>
+    <?= $row['status'] == 'verified' ? 'font-bold text-white dark:text-white text-base leading-tight' : 
+       ($row['status'] == 'rejected' ? 'font-bold text-white dark:text-white text-base leading-tight' : '') ?>">
+    <?= ucfirst($row['status']) ?>
+</span>
                         </div>
 
                         <div class="p-4 space-y-4">
                             
-                            <div class="flex items-center gap-3 pb-3 border-b border-gray-200 dark:border-gray-700">
-                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/50 flex items-center justify-center text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-800">
+                            <div class="flex items-center gap-3 pb-3 border-b border-white dark:border-white">
+                                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 dark:bg-white flex items-center justify-center text-blue-700 dark:text-blue-300 border border-white dark:border-white">
                                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                                 </div>
                                 <div>
@@ -127,7 +127,7 @@ if ($result->num_rows > 0) {
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded dark:bg-blue-900/50 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                                    <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded dark:bg-blue-900/50 dark:text-white">
                                         Jam Ke-<?= htmlspecialchars($row['jam_ke']) ?>
                                     </span>
                                 </div>
@@ -143,21 +143,21 @@ if ($result->num_rows > 0) {
                             <div>
                                 <span class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase mb-2">Rekap Absensi:</span>
                                 <div class="grid grid-cols-4 gap-2">
-                                    <div class="flex flex-col items-center p-2 rounded bg-green-50 border border-green-200 dark:bg-green-900/20 dark:border-green-800">
-                                        <span class="text-xs text-green-600 dark:text-green-400 font-medium">Hadir</span>
-                                        <span class="text-lg font-bold text-green-700 dark:text-green-300"><?= $row['hadir'] ?></span>
+                                    <div class="flex flex-col items-center p-2 rounded bg-green-50 border border-white dark:bg-green-900/20 dark:border-white">
+                                        <span class="text-xs text-green-600 dark:text-white font-medium">Hadir</span>
+                                        <span class="text-lg font-bold text-white dark:text-white"><?= $row['hadir'] ?></span>
                                     </div>
-                                    <div class="flex flex-col items-center p-2 rounded bg-yellow-50 border border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-800">
-                                        <span class="text-xs text-yellow-600 dark:text-yellow-400 font-medium">Sakit</span>
-                                        <span class="text-lg font-bold text-yellow-700 dark:text-yellow-300"><?= $row['sakit'] ?></span>
+                                    <div class="flex flex-col items-center p-2 rounded bg-yellow-50 border border-white dark:bg-yellow-900/20 dark:border-white">
+                                        <span class="text-xs text-yellow-600 dark:text-white font-medium">Sakit</span>
+                                        <span class="text-lg font-bold text-yellow-700 dark:text-white"><?= $row['sakit'] ?></span>
                                     </div>
-                                    <div class="flex flex-col items-center p-2 rounded bg-blue-50 border border-blue-200 dark:bg-blue-900/20 dark:border-blue-800">
-                                        <span class="text-xs text-blue-600 dark:text-blue-400 font-medium">Izin</span>
-                                        <span class="text-lg font-bold text-blue-700 dark:text-blue-300"><?= $row['izin'] ?></span>
+                                    <div class="flex flex-col items-center p-2 rounded bg-blue-50 border border-white dark:bg-blue-900/20 dark:border-white">
+                                        <span class="text-xs text-blue-600 dark:text-white font-medium">Izin</span>
+                                        <span class="text-lg font-bold text-white dark:text-white"><?= $row['izin'] ?></span>
                                     </div>
-                                    <div class="flex flex-col items-center p-2 rounded bg-red-50 border border-red-200 dark:bg-red-900/20 dark:border-red-800">
-                                        <span class="text-xs text-red-600 dark:text-red-400 font-medium">Alpa</span>
-                                        <span class="text-lg font-bold text-red-700 dark:text-red-300"><?= $row['alpa'] ?></span>
+                                    <div class="flex flex-col items-center p-2 rounded bg-red-50 border border-white dark:bg-red-900/20 dark:border-white">
+                                        <span class="text-xs text-red-600 dark:text-white font-medium">Alpa</span>
+                                        <span class="text-lg font-bold text-red-700 dark:text-white"><?= $row['alpa'] ?></span>
                                     </div>
                                 </div>
                             </div>
