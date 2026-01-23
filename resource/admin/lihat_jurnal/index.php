@@ -197,7 +197,7 @@ if ($result->num_rows > 0) {
                                         <div class="font-semibold text-gray-900 dark:text-white whitespace-nowrap">
                                             <?= date('d M Y', strtotime($row['tanggal'])) ?>
                                         </div>
-                                        <span class="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 mt-1 inline-block border border-blue-200 dark:border-blue-800">
+                                        <span class="text-xs text-blue-600 bg-blue-100 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 mt-1  dark:border-blue-800">
                                             Jam Ke-<?= htmlspecialchars($row['jam_ke']) ?>
                                         </span>
                                     </td>
@@ -215,22 +215,22 @@ if ($result->num_rows > 0) {
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         <div class="inline-flex shadow-sm rounded-md" role="group">
-                                            <button type="button" class="px-2 py-1 text-xs font-medium text-green-700 bg-green-50 border border-green-200 rounded-l-lg dark:bg-green-900 dark:border-green-800 dark:text-green-400" title="Hadir">
+                                            <button type="button" class="px-2 py-1 text-xs font-medium text-green-700 bg-green-50  rounded-l-lg dark:bg-green-900 dark:border-green-800 dark:text-green-400" title="Hadir">
                                                 H: <?= $row['hadir'] ?>
                                             </button>
-                                            <button type="button" class="px-2 py-1 text-xs font-medium text-yellow-700 bg-yellow-50 border-t border-b border-yellow-200 dark:bg-yellow-900 dark:border-yellow-800 dark:text-yellow-400" title="Sakit">
+                                            <button type="button" class="px-2 py-1 text-xs font-medium text-yellow-700 bg-yellow-50  border-yellow-200 dark:bg-yellow-900 dark:border-yellow-800 dark:text-yellow-400" title="Sakit">
                                                 S: <?= $row['sakit'] ?>
                                             </button>
-                                            <button type="button" class="px-2 py-1 text-xs font-medium text-blue-700 bg-blue-50 border-t border-b border-blue-200 dark:bg-blue-900 dark:border-blue-800 dark:text-blue-400" title="Izin">
+                                            <button type="button" class="px-2 py-1 text-xs font-medium text-blue-700 bg-blue-50  border-blue-200 dark:bg-blue-900 dark:border-blue-800 dark:text-blue-400" title="Izin">
                                                 I: <?= $row['izin'] ?>
                                             </button>
-                                            <button type="button" class="px-2 py-1 text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-r-lg dark:bg-red-900 dark:border-red-800 dark:text-red-400" title="Alpa">
+                                            <button type="button" class="px-2 py-1 text-xs font-medium text-red-700 bg-red-50  border-red-200 rounded-r-lg dark:bg-red-900 dark:border-red-800 dark:text-red-400" title="Alpa">
                                                 A: <?= $row['alpa'] ?>
                                             </button>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
                                             <?= $row['status'] == 'verified' ? 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-300 dark:border-green-800' : 
                                                ($row['status'] == 'rejected' ? 'bg-red-100 text-red-800 border-red-200 dark:bg-red-900 dark:text-red-300 dark:border-red-800' : 'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300 dark:border-yellow-800') ?>">
                                             <span class="w-2 h-2 mr-1 rounded-full 

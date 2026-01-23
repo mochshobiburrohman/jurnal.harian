@@ -48,6 +48,8 @@ if (isset($_POST['update_profil'])) {
         
         if ($conn->query($sql) === TRUE) {
             $msg_profil = "Profil berhasil diperbarui!";
+            // Update session nama jika berubah
+            $_SESSION['nama'] = $nama;
         } else {
             $err_profil = "Error updating record: " . $conn->error;
         }
@@ -204,5 +206,7 @@ $data = $result->fetch_assoc();
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 </html>

@@ -54,7 +54,7 @@ $q_verif_list = $conn->query($sql_verif);
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800 border-l-4 border-yellow-400">
-                <div class="p-3 mr-4 text-yellow-500 bg-yellow-100 rounded-full dark:text-yellow-100 dark:bg-yellow-900">
+                <div class="p-3 mr-4 text-white bg-yellow-500 rounded-full dark:text-white dark:bg-yellow-600">
                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
                 </div>
                 <div>
@@ -64,7 +64,7 @@ $q_verif_list = $conn->query($sql_verif);
             </div>
 
             <div class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800 border-l-4 border-blue-500">
-                <div class="p-3 mr-4 text-blue-500 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-900">
+                <div class="p-3 mr-4 text-white bg-blue-500 rounded-full dark:text-white dark:bg-blue-600">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <div>
@@ -74,7 +74,7 @@ $q_verif_list = $conn->query($sql_verif);
             </div>
 
             <div class="flex items-center p-4 bg-white rounded-lg shadow dark:bg-gray-800 border-l-4 border-green-500">
-                <div class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-900">
+                <div class="p-3 mr-4 text-white bg-green-500 rounded-full dark:text-white dark:bg-green-600">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 </div>
                 <div>
@@ -83,12 +83,15 @@ $q_verif_list = $conn->query($sql_verif);
                 </div>
             </div>
         </div>
+                </div>
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div class="bg-white shadow rounded-lg p-6 dark:bg-gray-800">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Menunggu Verifikasi</h3>
-                    <a href="kelola_jurnal/index.php" class="text-sm text-blue-600 hover:underline">Lihat Semua</a>
+                    <a href="kelola_jurnal/index.php" class="text-sm text-white hover:underline">Lihat Semua</a>
                 </div>
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

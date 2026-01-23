@@ -50,7 +50,7 @@ $result = $conn->query($sql);
                                         <th class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">Kelas</th>
                                         <th class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">Mata Pelajaran</th>
                                         <th class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">Isi Jurnal</th>
-                                        <th scope="col" class="px-6 py-3">Jml Hadir</th>
+                                        <th class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">Jumlah Hadir</th>
                                         <th class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">Status</th>
                                         <th class="p-4 text-xs font-medium text-center text-gray-500 uppercase dark:text-gray-400">Aksi</th>
                                     </tr>
@@ -75,7 +75,7 @@ $result = $conn->query($sql);
                                             <td class="p-4 text-sm text-gray-500 dark:text-gray-400">
                                                 <?= htmlspecialchars(substr($row['isi_jurnal'], 0, 50)) . '...'; ?>
                                             </td>
-                                            <td class="px-6 py-4">
+                                            <td class="p-4 text-sm text-gray-500 dark:text-gray-400">
                                                  <?= $row['hadir'] ?>
                                             </td>
                                             <td class="p-4 text-sm text-gray-900 dark:text-white">
