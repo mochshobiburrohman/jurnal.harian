@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Cek sesi dan role admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../../../index.php");
     exit;
@@ -8,19 +7,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 include '../../../koneksi.php';
 
-// Ambil daftar semua guru untuk dropdown
-$sql_guru = "SELECT * FROM guru ORDER BY nama ASC";
-$result_guru = $conn->query($sql_guru);
-
-// Setup Variabel untuk Dropdown Tanggal
-$tahun_sekarang = date('Y');
-$bulan_sekarang = date('m');
-$nama_bulan = [
-    '01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April',
-    '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus',
-    '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember'
-];
+// Ambil data guru untuk dropdown
+$guru_sql = "SELECT id, nama FROM guru ORDER BY nama ASC";
+$guru_result = $conn->query($guru_sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -30,81 +21,82 @@ $nama_bulan = [
     <link href="../../../src/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-50 dark:bg-gray-900">
-    <div class="antialiased">
-        <?php include ("../../partials/navbar.php") ?>
-        <?php include ("../../partials/sidebar_admin.php") ?>
 
-        <main class="p-4 md:ml-64 h-auto pt-20">
-            <div class="mb-4">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                    Cetak Laporan Jurnal (Admin)
-                </h1>
-            </div>
-            
-            <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow dark:bg-gray-800">
-                <form action="cetak_jurnal.php" method="GET" target="_blank" class="space-y-5">
-                    
-                    <div>
-                        <label for="id_guru" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Pilih Guru
-                        </label>
-                        <select name="id_guru" id="id_guru" required
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">-- Pilih Nama Guru --</option>
-                            <?php if ($result_guru && $result_guru->num_rows > 0): ?>
-                                <?php while($guru = $result_guru->fetch_assoc()): ?>
-                                    <option value="<?= $guru['id'] ?>"><?= htmlspecialchars($guru['nama']) ?> (NIP: <?= htmlspecialchars($guru['nip']) ?>)</option>
-                                <?php endwhile; ?>
-                            <?php endif; ?>
-                        </select>
-                    </div>
+<?php include ("../../partials/navbar.php")?>
+<?php include ("../../partials/sidebar_admin.php")?>
 
-                    <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Pilih Periode Jurnal
-                        </label>
-                        <div class="flex gap-4">
-                            <div class="w-1/2">
-                                <select id="pilih_bulan" onchange="updateInputBulan()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                    <?php foreach ($nama_bulan as $key => $val): ?>
-                                        <option value="<?= $key ?>" <?= ($key == $bulan_sekarang) ? 'selected' : '' ?>><?= $val ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            
-                            <div class="w-1/2">
-                                <select id="pilih_tahun" onchange="updateInputBulan()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                    <?php for ($y = $tahun_sekarang; $y >= $tahun_sekarang - 5; $y--): ?>
-                                        <option value="<?= $y ?>" <?= ($y == $tahun_sekarang) ? 'selected' : '' ?>><?= $y ?></option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                        </div>
-
-                        <input type="hidden" name="bulan" id="bulan_combined" value="<?= date('Y-m') ?>">
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            Cetak Laporan
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </main>
+<main class="p-4 md:ml-64 h-auto pt-20">
+    <div class="mb-4">
+        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+            Cetak Jurnal Guru
+        </h1>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
-    
-    <script>
-        function updateInputBulan() {
-            const bulan = document.getElementById('pilih_bulan').value;
-            const tahun = document.getElementById('pilih_tahun').value;
-            // Gabungkan menjadi format YYYY-MM (contoh: 2024-05)
-            const combined = `${tahun}-${bulan}`;
-            document.getElementById('bulan_combined').value = combined;
-        }
-    </script>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cetak Jurnal Bulanan</h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pilih bulan dan guru (opsional) untuk mencetak rekap jurnal.</p>
+            
+            <form action="cetak_jurnal.php" method="GET" target="_blank">
+                <div class="mb-4">
+                    <label for="bulan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Bulan</label>
+                    <input type="month" id="bulan" name="bulan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Guru (Opsional)</label>
+                    <select name="id_guru" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">-- Semua Guru --</option>
+                        <?php 
+                        // Reset pointer data guru
+                        $guru_result->data_seek(0);
+                        while($g = $guru_result->fetch_assoc()): 
+                        ?>
+                            <option value="<?= $g['id']; ?>"><?= $g['nama']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                
+                <button type="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Cetak Bulanan
+                </button>
+            </form>
+        </div>
+
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cetak Jurnal Harian</h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Pilih tanggal dan guru (opsional) untuk mencetak jurnal harian.</p>
+            
+            <form action="cetak_jurnal.php" method="GET" target="_blank">
+                <div class="mb-4">
+                    <label for="tanggal" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Tanggal</label>
+                    <input type="date" id="tanggal" name="tanggal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Guru (Opsional)</label>
+                    <select name="id_guru" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">-- Semua Guru --</option>
+                        <?php 
+                        // Reset pointer data guru
+                        $guru_result->data_seek(0);
+                        while($g = $guru_result->fetch_assoc()): 
+                        ?>
+                            <option value="<?= $g['id']; ?>"><?= $g['nama']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+
+                <button type="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    Cetak Harian
+                </button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 </body>
 </html>

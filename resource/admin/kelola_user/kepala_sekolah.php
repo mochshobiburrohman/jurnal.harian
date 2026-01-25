@@ -7,7 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 
 include '../../../koneksi.php';
 
-// Ambil hanya data kepala sekolah
+// Ambil data kepala sekolah
 $sql = "SELECT * FROM kepala_sekolah ORDER BY nama ASC";
 $kepseks = $conn->query($sql);
 ?>
@@ -50,12 +50,16 @@ $kepseks = $conn->query($sql);
                                 <td class="p-4 text-sm font-normal text-gray-900 dark:text-white"><?= htmlspecialchars($row['nama']); ?></td>
                                 <td class="p-4 text-sm font-normal text-gray-500 dark:text-gray-400"><?= htmlspecialchars($row['nip']); ?></td>
                                 <td class="p-4 text-sm font-normal text-gray-500 dark:text-gray-400"><?= htmlspecialchars($row['username']); ?></td>
-                                <td class="p-4 text-center">
-                                <a href="delete_user.php?id=<?= $row['id']; ?>&type=guru" 
-   onclick="return confirm('Apakah Anda yakin ingin menghapus data guru ini?');"
-   class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-red-500 dark:hover:bg-red-600">
-    Hapus
-</a>
+                                <td class="p-4 text-center space-x-2">
+                                    <a href="edit_user.php?id=<?= $row['id']; ?>&role=kepala_sekolah" 
+                                       class="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-2 dark:focus:ring-yellow-900">
+                                        Edit
+                                    </a>
+                                    <a href="delete_user.php?id=<?= $row['id']; ?>&type=kepala_sekolah" 
+                                       onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"
+                                       class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 dark:bg-red-500 dark:hover:bg-red-600">
+                                        Hapus
+                                    </a>
                                 </td>
                             </tr>
                             <?php endwhile; ?>

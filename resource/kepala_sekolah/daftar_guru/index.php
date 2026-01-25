@@ -51,10 +51,7 @@ $result = $conn->query($sql);
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                             NIP
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Username
-                                        </th>
-                                    </tr>
+                                        </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                     <?php if ($result->num_rows > 0): ?>
@@ -71,14 +68,11 @@ $result = $conn->query($sql);
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <?= htmlspecialchars($row['nip']); ?>
                                             </td>
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <?= htmlspecialchars($row['username']); ?>
-                                            </td>
-                                        </tr>
+                                            </tr>
                                         <?php endwhile; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="4" class="p-4 text-center text-gray-500 dark:text-gray-400">
+                                            <td colspan="3" class="p-4 text-center text-gray-500 dark:text-gray-400">
                                                 Belum ada guru yang mendaftar.
                                             </td>
                                         </tr>
