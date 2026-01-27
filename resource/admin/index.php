@@ -68,56 +68,60 @@ if (!$recent_journals) {
             <p class="text-gray-600 dark:text-gray-400">Selamat datang kembali, <?= htmlspecialchars($_SESSION['nama']); ?>.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            
-            <div class="bg-white rounded-lg shadow p-5 dark:bg-gray-800 border-l-4 border-blue-500">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 bg-blue-600 p-3 rounded-full dark:bg-blue-500">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Total Guru</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white"><?= $total_guru ?></p>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    
+    <div class="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl shadow-soft p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-glow group">
+        <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
+        <div class="flex items-center relative z-10">
+            <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
-
-            <div class="bg-white rounded-lg shadow p-5 dark:bg-gray-800 border-l-4 border-green-500">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 bg-green-600 p-3 rounded-full dark:bg-green-500">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Jurnal Hari Ini</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white"><?= $total_today ?></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-5 dark:bg-gray-800 border-l-4 border-yellow-500">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 bg-yellow-500 p-3 rounded-full dark:bg-yellow-600">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Perlu Verifikasi</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white"><?= $total_pending ?></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-lg shadow p-5 dark:bg-gray-800 border-l-4 border-indigo-500">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 bg-indigo-600 p-3 rounded-full dark:bg-indigo-500">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Sudah Diverifikasi</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white"><?= $total_verified ?></p>
-                    </div>
-                </div>
+            <div class="ml-4 text-white">
+                <p class="text-sm font-medium opacity-80">Total Guru</p>
+                <p class="text-3xl font-bold"><?= $total_guru ?></p>
             </div>
         </div>
+    </div>
+
+    <div class="relative overflow-hidden bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-soft p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+        <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
+        <div class="flex items-center relative z-10">
+            <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            </div>
+            <div class="ml-4 text-white">
+                <p class="text-sm font-medium opacity-80">Jurnal Hari Ini</p>
+                <p class="text-3xl font-bold"><?= $total_today ?></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative overflow-hidden bg-gradient-to-br from-orange-400 to-red-500 rounded-xl shadow-soft p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+        <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
+        <div class="flex items-center relative z-10">
+            <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="ml-4 text-white">
+                <p class="text-sm font-medium opacity-80">Pending</p>
+                <p class="text-3xl font-bold"><?= $total_pending ?></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl shadow-soft p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
+        <div class="absolute right-0 top-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-white opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
+        <div class="flex items-center relative z-10">
+            <div class="p-3 rounded-lg bg-white/20 backdrop-blur-sm text-white">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="ml-4 text-white">
+                <p class="text-sm font-medium opacity-80">Terverifikasi</p>
+                <p class="text-3xl font-bold"><?= $total_verified ?></p>
+            </div>
+        </div>
+    </div>
+</div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
             
@@ -133,48 +137,64 @@ if (!$recent_journals) {
                     <h3 class="text-lg font-bold text-gray-900 dark:text-white">Jurnal Terbaru Masuk</h3>
                     <a href="kelola_jurnal/index.php" class="text-sm text-white hover:underline dark:text-white">Lihat Semua</a>
                 </div>
-                <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th class="px-4 py-3">Guru</th>
-                                <th class="px-4 py-3">Tanggal</th>
-                                <th class="px-4 py-3">Mapel</th>
-                                <th class="px-4 py-3">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($recent_journals->num_rows > 0): ?>
-                                <?php while($row = $recent_journals->fetch_assoc()): ?>
-                                <tr class="bg-white dark:bg-gray-800">
-                                    <td class="px-4 py-3 font-medium text-gray-900 dark:text-white">
-                                        <?= htmlspecialchars($row['nama_guru']) ?>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <?= date('d/m/Y', strtotime($row['tanggal'])) ?>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <?= htmlspecialchars($row['mata_pelajaran'] ?? '-') ?>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <?php if($row['status'] == 'verified'): ?>
-                                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Verified</span>
-                                        <?php elseif($row['status'] == 'rejected'): ?>
-                                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Rejected</span>
-                                        <?php else: ?>
-                                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">Pending</span>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="4" class="px-4 py-3 text-center">Belum ada data jurnal.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-500 uppercase bg-gray-50/50 dark:bg-gray-700 dark:text-gray-400 border-b border-gray-100">
+            <tr>
+                <th class="px-6 py-4 font-semibold tracking-wide">Guru</th>
+                <th class="px-6 py-4 font-semibold tracking-wide">Tanggal</th>
+                <th class="px-6 py-4 font-semibold tracking-wide">Mapel</th>
+                <th class="px-6 py-4 font-semibold tracking-wide">Status</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+            <?php if ($recent_journals->num_rows > 0): ?>
+                <?php while($row = $recent_journals->fetch_assoc()): ?>
+                <tr class="bg-white hover:bg-gray-50 transition-colors duration-200 dark:bg-gray-800 dark:hover:bg-gray-700">
+                    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">
+                            <?= substr($row['nama_guru'], 0, 1) ?>
+                        </div>
+                        <?= htmlspecialchars($row['nama_guru']) ?>
+                    </td>
+                    <td class="px-6 py-4 text-gray-500">
+                        <?= date('d M Y', strtotime($row['tanggal'])) ?>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                            <?= htmlspecialchars($row['mata_pelajaran'] ?? '-') ?>
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <?php if($row['status'] == 'verified'): ?>
+                            <span class="inline-flex items-center bg-green-50 text-green-700 text-xs font-medium px-2.5 py-0.5 rounded-full ring-1 ring-inset ring-green-600/20">
+                                <span class="w-1.5 h-1.5 bg-green-600 rounded-full mr-1.5"></span> Verified
+                            </span>
+                        <?php elseif($row['status'] == 'rejected'): ?>
+                            <span class="inline-flex items-center bg-red-50 text-red-700 text-xs font-medium px-2.5 py-0.5 rounded-full ring-1 ring-inset ring-red-600/20">
+                                <span class="w-1.5 h-1.5 bg-red-600 rounded-full mr-1.5"></span> Rejected
+                            </span>
+                        <?php else: ?>
+                            <span class="inline-flex items-center bg-yellow-50 text-yellow-700 text-xs font-medium px-2.5 py-0.5 rounded-full ring-1 ring-inset ring-yellow-600/20">
+                                <span class="w-1.5 h-1.5 bg-yellow-600 rounded-full mr-1.5"></span> Pending
+                            </span>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" class="px-6 py-8 text-center text-gray-400">
+                        <div class="flex flex-col items-center justify-center">
+                            <svg class="w-10 h-10 mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            Belum ada data jurnal.
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
             </div>
         </div>
 
