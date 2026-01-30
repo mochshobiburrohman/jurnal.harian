@@ -7,25 +7,84 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
 }
 
 include '../../../koneksi.php';
+// DAFTAR MATA PELAJARAN LENGKAP SMK YPM 12 TUBAN
+// Mencakup: TKR, TPM, TEI, Las, Listrik + Mulok Aswaja
 $daftar_mapel = [
+    // --- MUATAN UMUM (A) & (B) ---
     "Pendidikan Agama dan Budi Pekerti",
-    "Pendidikan Pancasila dan Kewarganegaraan",
+    "Pendidikan Pancasila",
     "Bahasa Indonesia",
     "Matematika",
-    "Sejarah Indonesia",
+    "Sejarah",
     "Bahasa Inggris",
     "Seni Budaya",
     "Pendidikan Jasmani, Olahraga, dan Kesehatan",
-    "Informatika / Simulasi Digital",
-    "Fisika",
-    "Kimia",
-    "Biologi",
-    "Dasar Program Keahlian",
-    "Kompetensi Keahlian",
-    "Produk Kreatif dan Kewirausahaan",
-    "Muatan Lokal",
-    "Bimbingan Konseling"
+    "Informatika",
+    "Projek IPAS (Ilmu Pengetahuan Alam dan Sosial)",
+    
+    // --- MUATAN LOKAL (KHAS YPM 12 TUBAN & JATIM) ---
+    "Aswaja dan Ke-NU-an",
+    "Bahasa Daerah (Jawa)",
+
+    // --- MATA PELAJARAN JURUSAN TEKNIK KENDARAAN RINGAN (TKR) ---
+    "Dasar-dasar Teknik Otomotif",
+    "Gambar Teknik Otomotif",
+    "Pemeliharaan Mesin Kendaraan Ringan (PMKR)",
+    "Pemeliharaan Sasis dan Pemindah Tenaga (PSPT)",
+    "Pemeliharaan Kelistrikan Kendaraan Ringan (PKKR)",
+    "Teknologi Dasar Otomotif",
+    "Pekerjaan Dasar Teknik Otomotif",
+
+    // --- MATA PELAJARAN JURUSAN TEKNIK PEMESINAN (TPM) ---
+    "Dasar-dasar Teknik Mesin",
+    "Gambar Teknik Mesin",
+    "Pekerjaan Dasar Teknik Mesin",
+    "Dasar Perancangan Teknik Mesin",
+    "Teknik Pemesinan Bubut",
+    "Teknik Pemesinan Frais",
+    "Teknik Pemesinan Gerinda",
+    "Teknik Pemesinan NC/CNC dan CAM",
+    "Gambar Teknik Manufaktur",
+
+    // --- MATA PELAJARAN JURUSAN TEKNIK ELEKTRONIKA INDUSTRI (TEI) ---
+    "Dasar-dasar Teknik Elektronika",
+    "Kerja Bengkel dan Gambar Teknik",
+    "Dasar Listrik dan Elektronika",
+    "Teknik Pemrograman, Mikroprosesor dan Mikrokontroler",
+    "Penerapan Rangkaian Elektronika",
+    "Sistem Pengendali Elektronik",
+    "Pengendali Sistem Robotik",
+    "Pembuatan dan Perbaikan Peralatan Elektronik",
+    "Sistem Kontrol Elektropneumatik",
+    "Pemrograman PLC dan HMI",
+
+    // --- MATA PELAJARAN JURUSAN TEKNIK PENGELASAN (LAS) ---
+    "Dasar-dasar Teknik Pengelasan",
+    "Teknik Pengelasan OAW",
+    "Teknik Pengelasan SMAW",
+    "Teknik Pengelasan GMAW",
+    "Teknik Pengelasan GTAW",
+    "Cakram dan Pemeriksaan Hasil Las",
+    "Gambar Teknik Pengelasan",
+
+    // --- MATA PELAJARAN JURUSAN TEKNIK INSTALASI TENAGA LISTRIK (TITL) ---
+    "Dasar-dasar Ketenagalistrikan",
+    "Gambar Teknik Listrik",
+    "Pekerjaan Dasar Elektromekanik",
+    "Instalasi Penerangan Listrik",
+    "Instalasi Tenaga Listrik",
+    "Instalasi Motor Listrik",
+    "Perbaikan Peralatan Listrik",
+
+    // --- LAINNYA & PENGEMBANGAN DIRI ---
+    "Produk Kreatif dan Kewirausahaan (PKK)",
+    "Mata Pelajaran Pilihan",
+    "Bimbingan Konseling (BK)",
+    "Projek Penguatan Profil Pelajar Pancasila (P5)"
 ];
+
+// Sortir abjad agar guru lebih mudah mencari
+sort($daftar_mapel);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_guru = $_SESSION['user_id'];
