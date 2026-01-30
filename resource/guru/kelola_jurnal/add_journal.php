@@ -7,6 +7,25 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'guru') {
 }
 
 include '../../../koneksi.php';
+$daftar_mapel = [
+    "Pendidikan Agama dan Budi Pekerti",
+    "Pendidikan Pancasila dan Kewarganegaraan",
+    "Bahasa Indonesia",
+    "Matematika",
+    "Sejarah Indonesia",
+    "Bahasa Inggris",
+    "Seni Budaya",
+    "Pendidikan Jasmani, Olahraga, dan Kesehatan",
+    "Informatika / Simulasi Digital",
+    "Fisika",
+    "Kimia",
+    "Biologi",
+    "Dasar Program Keahlian",
+    "Kompetensi Keahlian",
+    "Produk Kreatif dan Kewirausahaan",
+    "Muatan Lokal",
+    "Bimbingan Konseling"
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_guru = $_SESSION['user_id'];
@@ -100,9 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <option value="XII T.LAS">XII T.LAS</option>
         </select>
 </div>
-                <div>
+<div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Mata Pelajaran</label>
-                    <input type="text" name="mata_pelajaran" placeholder="Contoh: Matematika" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+                    <input list="list_mapel" type="text" name="mata_pelajaran" placeholder="Ketik / Pilih Mapel..." required autocomplete="off" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white focus:ring-blue-500 focus:border-blue-500">
+                    <datalist id="list_mapel">
+                        <?php foreach ($daftar_mapel as $m): ?>
+                            <option value="<?= $m ?>"></option>
+                        <?php endforeach; ?>
+                    </datalist>
                 </div>
             </div>
 
