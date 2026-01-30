@@ -97,15 +97,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
-                Kelas
-            </label>
-            <input type="text" name="kelas" required
-                   value="<?= $data['kelas'] ?? ''; ?>"
-                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
-                          rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
-                          dark:bg-gray-700 dark:text-white">
-        </div>
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">
+        Kelas
+    </label>
+    <select name="kelas" required
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600
+                   rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+                   dark:bg-gray-700 dark:text-white">
+        <?php
+        $daftar_kelas = ["X IPA 1", "X IPA 2", "XI IPA 1", "XI IPA 2", "XII IPA 1", "XII IPA 2"];
+        foreach ($daftar_kelas as $kls) {
+            $selected = ($data['kelas'] == $kls) ? 'selected' : '';
+            echo "<option value='$kls' $selected>$kls</option>";
+        }
+        ?>
+    </select>
+</div>
 
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">

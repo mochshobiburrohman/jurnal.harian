@@ -72,10 +72,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kelas</label>
-                    <input type="text" name="kelas" placeholder="Contoh: X IPA 1" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
-                </div>
+            <div>
+    <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Kelas</label>
+    <select name="kelas" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
+        <option value="" disabled selected>Pilih Kelas</option>
+        <option value="X TKR A">X TKR A</option>
+        <option value="X TKR B">X TKR B</option>
+        <option value="X TKR C">X TKR C</option>
+        <option value="X TPM A">X TPM A</option>
+        <option value="X TPM B">X TPM B</option>
+        <option value="X TEI">X TEI</option>
+        <option value="X T.LIST">X T.LIST</option>
+        <option value="X T.LAS">X T.LAS</option>
+        <option value="XI TEI ">XI TEI </option>
+        <option value="XI TPM">XI TPM </option>
+        <option value="XI TKR A">XI TKR A</option>
+        <option value="XI TKR B">XI TKR B</option>
+        <option value="XI T.LIST">XI T.LIST</option>
+        <option value="XI T.LAS">XI T.LAS</option>
+        <option value="XII TEI ">XII TEI </option>
+        <option value="XII TPM A">XII TPM A</option>
+        <option value="XII TPM B">XII TPM B</option>
+        <option value="XII TKR A">XII TKR A</option>
+        <option value="XII TKR B">XII TKR B</option>
+        <option value="XII TKR C">XII TKR B</option>
+        <option value="XII T.LIST">XII T.LIST</option>
+        <option value="XII T.LAS">XII T.LAS</option>
+        </select>
+</div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Mata Pelajaran</label>
                     <input type="text" name="mata_pelajaran" placeholder="Contoh: Matematika" required class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:text-white">
